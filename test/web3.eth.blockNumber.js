@@ -9,7 +9,7 @@ var method = 'blockNumber';
 var tests = [{
     result: '0xb',
     formattedResult: 11,
-    call: 'eth_'+ method
+    call: 'owt_'+ method
 }];
 
 describe('web3.eth', function () {
@@ -47,7 +47,7 @@ describe('web3.eth', function () {
                 });
 
                 // when 
-                web3.eth.getBlockNumber(function (err, result) {
+                web3.owt.getBlockNumber(function (err, result) {
                     assert.strictEqual(test.formattedResult, result);
                     done();
                 });

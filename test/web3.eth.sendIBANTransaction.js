@@ -4,7 +4,7 @@ var Web3 = require('../index');
 var web3 = new Web3();
 var FakeHttpProvider2 = require('./helpers/FakeHttpProvider2');
 
-describe('web3.eth.sendIBANTransaction', function () {
+describe('web3.owt.sendIBANTransaction', function () {
     it('should send transaction', function () {
 
         var iban = 'XE81ETHXREGGAVOFYORK';
@@ -25,15 +25,15 @@ describe('web3.eth.sendIBANTransaction', function () {
         provider.injectValidation(function (payload) {
             if (step === 0) {
                 step++;
-                assert.equal(payload.method, 'eth_call');
+                assert.equal(payload.method, 'owt_call');
                 assert.deepEqual(payload.params, [{
                    data: "0x3b3b57de5852454700000000000000000000000000000000000000000000000000000000",
-                   to: web3.eth.icapNamereg().address
+                   to: web3.owt.icapNamereg().address
                 }, "latest"]);
 
                 return;
             } 
-            assert.equal(payload.method, 'eth_sendTransaction');
+            assert.equal(payload.method, 'owt_sendTransaction');
             assert.deepEqual(payload.params, [{
                 data: '0xb214faa54741564f46594f524b0000000000000000000000000000000000000000000000',
                 from: address,
@@ -42,7 +42,7 @@ describe('web3.eth.sendIBANTransaction', function () {
             }]);
         });
 
-        web3.eth.sendIBANTransaction(address, iban, 10000);
+        web3.owt.sendIBANTransaction(address, iban, 10000);
 
     });
 });

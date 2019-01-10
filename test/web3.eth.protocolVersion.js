@@ -8,10 +8,10 @@ var method = 'protocolVersion';
 
 var tests = [{
     result: ['1234'],
-    call: 'eth_'+ method
+    call: 'owt_'+ method
 }];
 
-describe('eth.protocolVersion', function () {
+describe('owt.protocolVersion', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function () {
