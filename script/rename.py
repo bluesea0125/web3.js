@@ -1,6 +1,6 @@
 #
 # written by junying
-#
+# cd test
 
 import os
 
