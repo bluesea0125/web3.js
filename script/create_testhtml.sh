@@ -1,2 +1,2 @@
-cp test test.html
-cp test test.js
+cp template test.html
+cp template test.js
