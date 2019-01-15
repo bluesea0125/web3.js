@@ -4,13 +4,14 @@
     git checkout 1.0
     npm install
     
-    
-    # sudo npm install gulp -g
+    ### generate dist/web.js
+    ### check gulpfile.js
+    # npm install gulp del browserify gulp-jshint jshint gulp-jshint gulp-uglify gulp-rename vinyl-source-stream exorcist bower gulp-streamify gulp-replace
     # gulp 
     
     Test
     # sudo npm install mocha -g
-    # mocha; jshint *.js packages
+    # mocha
 ### Test
     var Web3 = require('web3');
 
