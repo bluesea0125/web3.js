@@ -31,3 +31,8 @@
     console.log(web3.currentProvider.type)
     // print: "eth"
 ### [Doc](https://web3js.readthedocs.io/en/1.0/web3.html)
+    [gulp: generate dist/web3.js, web3.min.js](https://github.com/ethereum/web3.js/issues/2141)
+    $ cd web3.js
+    $ gulp
+    > dist/web3.js, dist/web3.min.js
+    []
