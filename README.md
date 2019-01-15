@@ -4,6 +4,9 @@
     git checkout 1.0
     npm install
     npm run-script build
+    
+    sudo npm install mocha -g
+    npm test
 ### Test
     var Web3 = require('web3');
 
