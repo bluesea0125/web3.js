@@ -6,7 +6,8 @@
     
     ### generate dist/web.js
     ### check gulpfile.js
-    # npm install gulp del browserify gulp-jshint jshint gulp-jshint gulp-uglify gulp-rename vinyl-source-stream exorcist bower gulp-streamify gulp-replace
+    # npm install gulp del browserify jshint gulp-jshint gulp-uglify gulp-rename gulp-streamify gulp-replace
+    # npm install exorcist bower vinyl-source-stream bignumber.js utf8 crypto-js
     # gulp 
     
     Test
