@@ -4,10 +4,10 @@
     git checkout 1.0
     npm install
     sudo npm install gulp -g
-    npm run-script build
+    gulp all
     
     sudo npm install mocha -g
-    npm test
+    mocha; jshint *.js packages
 ### Test
     var Web3 = require('web3');
 
@@ -27,3 +27,4 @@
 
     console.log(web3.currentProvider.type)
     // print: "eth"
+### [Doc](https://web3js.readthedocs.io/en/1.0/web3.html)
