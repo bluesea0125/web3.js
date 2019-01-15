@@ -3,6 +3,7 @@
     git clone git@github.com:bluesea0125/web3.js
     git checkout 1.0
     npm install
+    sudo npm install gulp -g
     npm run-script build
     
     sudo npm install mocha -g
