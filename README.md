@@ -22,6 +22,9 @@
 ### Test
     var Web3 = require('web3');
     var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    var blknumber = web3.eth.blockNumber;
+    var coinbase = web3.eth.coinbase;
+    var balance = web3.eth.getBalance(coinbase);
     // connect to TrueChain network
     var web3 = new Web3('http://localhost:8545', 'etrue')
     web3.eth.getBlockNumber().then(console.log)
@@ -38,6 +41,10 @@
 
     console.log(web3.currentProvider.type)
     // print: "eth"
+### Distribute
+    cd node_modules/web3
+    npm install gulp@3.9.0
+    gulp
 ### [Doc](https://web3js.readthedocs.io/en/1.0/web3.html)
     [gulp: generate dist/web3.js, web3.min.js](https://github.com/ethereum/web3.js/issues/2141)
     $ cd web3.js
