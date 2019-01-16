@@ -24,4 +24,4 @@ var tests = [{
     call: 'owt_getUncleCountByBlockNumber'
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('owt', method, tests);

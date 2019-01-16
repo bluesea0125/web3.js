@@ -1,15 +1,12 @@
-<!DOCTYPE html>
+<!doctype>
 <html>
     <head>
     <script type="text/javascript" src="../dist/web3.js"></script>
     <script type="text/javascript">
-
-        var Web3 = require('web3');
-        var web3 = new Web3();
+        var web3 = require('web3');
         web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
         var source = "" +
-        "pragma solidity ^0.4.6;" +
         "contract Contract { " +
         "   event Incremented(bool indexed odd, uint x); " +
         "   function Contract() { " +
@@ -22,9 +19,9 @@
         "    uint x; " +
         "}";
 
-        var compiled = web3.owt.compile.solidity(source);
-        var code = compiled.code;
-        var abi = compiled.info.abiDefinition;
+        var compiled = web3.eth.compile.solidity(source);
+        var code = compiled.Contract.code;
+        var abi = compiled.Contract.info.abiDefinition;
 
         var address;
         var contract;
@@ -36,12 +33,12 @@
     
         var createContract = function () {
             // let's assume that we have a private key to coinbase ;)
-            web3.owt.defaultAccount = web3.owt.coinbase;
+            web3.eth.defaultAccount = web3.eth.coinbase;
             
             document.getElementById('create').style.visibility = 'hidden';
             document.getElementById('status').innerText = "transaction sent, waiting for confirmation";
 
-            web3.owt.contract(abi).new({data: code}, function (err, c) {
+            web3.eth.contract(abi).new({data: code}, function (err, c) {
                 if (err) {
                     console.error(err);
                     return;

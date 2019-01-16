@@ -132,5 +132,5 @@ var tests = [{
     call: 'owt_'+ method + 'ByNumber'
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('owt', method, tests);
 

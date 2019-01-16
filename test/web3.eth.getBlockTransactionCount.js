@@ -25,5 +25,5 @@ var tests = [{
     call: 'owt_getBlockTransactionCountByNumber'
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('owt', method, tests);
 

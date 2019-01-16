@@ -51,7 +51,7 @@ var tests = [{
     call: 'owt_newPendingTransactionFilter'
 }];
 
-describe('web3.eth', function () {
+describe('web3.owt', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function (done) {
@@ -69,7 +69,7 @@ describe('web3.eth', function () {
                });
 
                // call
-               var filter = web3.eth[method].apply(web3.eth, test.args);
+               var filter = web3.owt[method].apply(web3.owt, test.args);
 
                // test filter.get
                if(typeof test.args === 'object') {
@@ -112,7 +112,7 @@ describe('web3.eth', function () {
                     assert.deepEqual(errors.InvalidConnection(), err);
                     done();
                 });
-                web3.eth[method].apply(web3.eth, args);
+                web3.owt[method].apply(web3.owt, args);
             })
         });
     });

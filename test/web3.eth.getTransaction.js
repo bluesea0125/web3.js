@@ -40,5 +40,5 @@ var tests = [{
     call: 'owt_'+ method + 'ByHash'
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('owt', method, tests);
 

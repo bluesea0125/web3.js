@@ -48,5 +48,5 @@ var tests = [{
     call: 'owt_getTransactionByBlockNumberAndIndex'
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('owt', method, tests);
 

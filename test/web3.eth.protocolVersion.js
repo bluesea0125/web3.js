@@ -27,7 +27,7 @@ describe('owt.protocolVersion', function () {
                 });
 
                 // when
-                var result = web3.eth[method];
+                var result = web3.owt[method];
 
                 // then
                 assert.deepEqual(test.result, result);

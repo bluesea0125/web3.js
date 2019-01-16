@@ -4,7 +4,7 @@
  * b. Finding the account address using which the message was signed
  */
 var Web3 = require('../index.js');
-var ethURL = ""; 
+var owtURL = ""; 
 var defaultAc = ""; 
 var defaultAcPWD=""; 
 var signatureContractCodeReadable="\n\tcontract SignatureVerifier {\n\t\tfunction verify( bytes32 hash, uint8 v, bytes32 r, bytes32 s) \n"+ 
@@ -16,7 +16,7 @@ var sigContractInstance = null;
 var strAbi='[{"constant":true,"inputs":[{"name":"hash","type":"bytes32"},{"name":"v","type":"uint8"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"}],"name":"verify","outputs":[{"name":"returnAddress","type":"address"}],"payable":false,"type":"function"}]';
 var signMessage=""; 
 
-var ethWeb3 = null;
+var owtWeb3 = null;
 
 function setContractAddress(conAddress){
     sigContractAddress = conAddress;
@@ -31,7 +31,7 @@ function setPassword(pwd){
 }
 
 function setEthereumURL(url){
-    ethURL = url;
+    owtURL = url;
 }
 
 function setMessage(msg){
@@ -39,15 +39,15 @@ function setMessage(msg){
 }
 
 function initializeEthereumConnection(){
-   if(ethWeb3!=null && ethWeb3.isConnected()==true)  {
+   if(owtWeb3!=null && owtWeb3.isConnected()==true)  {
     return true;
   }
   
-  ethWeb3 = new Web3(new Web3.providers.HttpProvider(ethURL));
+  owtWeb3 = new Web3(new Web3.providers.HttpProvider(owtURL));
   
-  if(ethWeb3.isConnected()==true){
+  if(owtWeb3.isConnected()==true){
       if(defaultAc==''){
-        defaultAc=ethWeb3.owt.accounts[1];
+        defaultAc=owtWeb3.owt.accounts[1];
       }
       return true;
   }
@@ -57,7 +57,7 @@ function initializeEthereumConnection(){
 
 function unlockAccount(acAddress){
   if(acAddress!=undefined && acAddress!=null){
-    var state=ethWeb3.personal.unlockAccount(defaultAc, defaultAcPWD, 100);
+    var state=owtWeb3.personal.unlockAccount(defaultAc, defaultAcPWD, 100);
     return state;
   }
 
@@ -67,11 +67,11 @@ function unlockAccount(acAddress){
 
 function initializeContract(){
     initializeEthereumConnection();
-    if(ethWeb3.isConnected()==false){
+    if(owtWeb3.isConnected()==false){
         return;
     }  
     var abi = JSON.parse(strAbi);
-    var contract = ethWeb3.owt.contract(abi);
+    var contract = owtWeb3.owt.contract(abi);
 
     sigContractInstance =  contract.at(sigContractAddress)  
 }
@@ -79,14 +79,14 @@ function initializeContract(){
 function signMessage(message){
 
     initializeEthereumConnection();
-    if(ethWeb3.isConnected()==false){
+    if(owtWeb3.isConnected()==false){
         return false;
     }
     
     var state=unlockAccount(defaultAc);
     
     const msg = new Buffer(message);
-    const sig = ethWeb3.owt.sign(defaultAc, '0x' + msg.toString('hex'));
+    const sig = owtWeb3.owt.sign(defaultAc, '0x' + msg.toString('hex'));
 
     return sig;
 }
@@ -94,7 +94,7 @@ function signMessage(message){
 function verifySignedByAc(message, sig){
     initializeEthereumConnection();
 
-    if(ethWeb3.isConnected()==false){
+    if(owtWeb3.isConnected()==false){
         return false;
     }
     initializeContract();
@@ -105,7 +105,7 @@ function verifySignedByAc(message, sig){
     // So while finding who signed it we need to prefix this part 
     const prefix = new Buffer("\x19Ethereum Signed Message:\n");
     const msg = new Buffer(message);
-    const prefixedMsg = ethWeb3.sha3(
+    const prefixedMsg = owtWeb3.sha3(
     Buffer.concat([prefix, new Buffer(String(msg.length)), msg]).toString('utf8')
     );
 
@@ -118,7 +118,7 @@ function verifySignedByAc(message, sig){
 
 function splitSig(sig) {
   return {
-    v: ethWeb3.toDecimal('0x' + sig.slice(130, 132)),
+    v: owtWeb3.toDecimal('0x' + sig.slice(130, 132)),
     r: sig.slice(0, 66),
     s: sig.slice(66, 130)
   }
@@ -152,7 +152,7 @@ function execute(){
     console.log("\te. Message for signing");
     console.log("**********************************************************************");
 
-    if(ethURL==''){
+    if(owtURL==''){
         console.log("Error: Ethereum URL is not specified");
         return;
     }
@@ -175,7 +175,7 @@ function execute(){
     
 
     console.log("Following parameters applied");
-    console.log("\ta. Ethereum URL                  :",ethURL);
+    console.log("\ta. Ethereum URL                  :",owtURL);
     console.log("\tb. Ethereum Account Address      :",defaultAc);
     console.log("\tc. Ethereum Account Passphrase   :",defaultAcPWD);
     console.log("\td. Signature Contract Address    :",sigContractAddress);

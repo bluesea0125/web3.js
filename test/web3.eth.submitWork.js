@@ -13,5 +13,5 @@ var tests = [
     call: 'owt_'+ method
 }];
 
-testMethod.runTests('eth', method, tests);
+testMethod.runTests('owt', method, tests);
 

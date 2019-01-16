@@ -39,7 +39,7 @@ var tests = [{
     call: 'owt_syncing'
 }];
 
-describe('eth', function () {
+describe('owt', function () {
     describe(method, function () {
         tests.forEach(function (test, index) {
             it('property test: ' + index, function (done) {
@@ -59,7 +59,7 @@ describe('eth', function () {
 
 
                 // call
-                var syncing = web3.eth[method](function(e, res){
+                var syncing = web3.owt[method](function(e, res){
                     if(count === 1) {
                         assert.isTrue(res);
                         count++;
