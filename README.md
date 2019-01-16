@@ -1,8 +1,8 @@
 # OWT JavaScript API
 ### Install
-    git clone git@github.com:bluesea0125/web3.js
-    git checkout 1.0
-    npm install
+    # git clone git@github.com:bluesea0125/web3.js
+    # git checkout 1.0
+    # npm install
     
     ### generate dist/web.js
     ### check gulpfile.js
@@ -13,9 +13,15 @@
     Test
     # sudo npm install mocha -g
     # mocha
+### Develop
+    mkdir test
+    cd test
+    npm install web3@0.14.0
+    [cd node_modules/web3 & change code]
+    $ node
 ### Test
     var Web3 = require('web3');
-
+    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     // connect to TrueChain network
     var web3 = new Web3('http://localhost:8545', 'etrue')
     web3.eth.getBlockNumber().then(console.log)
